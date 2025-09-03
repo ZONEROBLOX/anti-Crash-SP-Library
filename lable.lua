@@ -1,94 +1,99 @@
-local X=game:GetService(string.char(67,111,114,101,71,117,105))
-if X:FindFirstChild(string.char(99,114,115,115,115,115))then return end
+local X = game:GetService("CoreGui")
+if X:FindFirstChild("crssss") then return end
+local Y = Instance.new("ScreenGui")
+Y.Name = "crssss"
+Y.Parent = X
 
-local Y=Instance.new(string.char(83,99,114,101,101,110,71,117,105))
-Y.Name=string.char(99,114,115,115,115,115)
-Y.Parent=X
-
-local Z={}
-Z.__index=Z
+local Z = {}
+Z.__index = Z
 
 function Z.n()
-   local A=setmetatable({},Z)
-   A["\115L"]=nil
-   A["\98t"]=nil
-   A["\104b"]=nil
-   A["\118v"]=true
-   A["\100d"]=false
-   A["\115s"]=false
-   A["\112r"]=true
-   return A
+    local A = setmetatable({}, Z)
+    A["_SL"] = nil
+    A["_bt"] = nil
+    A["_hb"] = nil
+    A["_visible"] = true
+    A["_debounce"] = false
+    A["_stopped"] = false
+    A["_print"] = true
+    return A
 end
 
-function Z.q(B,C)
-   if B["\112r"]then
-      if C then warn(C) else print(C) end
-   end
+function Z.q(self, msg, useWarn)
+    if self["_print"] then
+        if useWarn then warn(msg) else print(msg) end
+    end
 end
 
-function Z.f(D)
-   local E=tick()
-   while(not D["\115s"])do
-      D["\115L"]=X:FindFirstChild("\115p Library")
-      if D["\115L"]and D["\115L"]:FindFirstChild("\73mageButton")and D["\115L"]:FindFirstChild("\72ub")then
-         D["\98t"]=D["\115L"].ImageButton
-         D["\104b"]=D["\115L"].Hub
-         D.q(D,"r")
-         return true
-      end
-      if tick()-E>30 then
-         D.q(D,"no lib",true)
-         return false
-      end
-      task.wait(0.5)
-   end
-   return false
+function Z.f(self)
+    local startTime = tick()
+    while (not self["_stopped"]) do
+        self["_SL"] = X:FindFirstChild("sp Library")
+        if self["_SL"] and self["_SL"]:FindFirstChild("ImageButton") and self["_SL"]:FindFirstChild("Hub") then
+            self["_bt"] = self["_SL"].ImageButton
+            self["_hb"] = self["_SL"].Hub
+            self:q("Library found")
+            return true
+        end
+        if tick() - startTime > 30 then
+            self:q("no lib", true)
+            return false
+        end
+        task.wait(0.5)
+    end
+    return false
 end
 
-function Z.g(F)
-   if F["\100d"]then return end
-   F["\118v"]=not F["\118v"]
-   if F["\104b"]then
-      F["\104b"].Visible=F["\118v"]
-   end
-   F["\100d"]=true
-   task.delay(3,function()F["\100d"]=false end)
+function Z.g(self)
+    if self["_debounce"] then return end
+    self["_visible"] = not self["_visible"]
+    if self["_hb"] then
+        self["_hb"].Visible = self["_visible"]
+    end
+    self["_debounce"] = true
+    task.delay(3, function() self["_debounce"] = false end)
 end
 
-function Z.m(H)
-   task.spawn(function()
-      while not H["\115s"]do
-         if not(H["\115L"]and H["\115L"].Parent==X and
-            H["\98t"]and H["\98t"].Parent==H["\115L"]and
-            H["\104b"]and H["\104b"].Parent==H["\115L"])then
-               H.q(H,"err",true)
-               if H.f(H)then
-                  H["\98t"].MouseButton1Click:Connect(function()H.g(H)end)
-               else
-                  H["\115s"]=true
-                  break
-               end
-         end
-         task.wait(1)
-      end
-   end)
+function Z.m(self)
+    task.spawn(function()
+        while not self["_stopped"] do
+            if not (self["_SL"] and self["_SL"].Parent == X and
+                    self["_bt"] and self["_bt"].Parent == self["_SL"] and
+                    self["_hb"] and self["_hb"].Parent == self["_SL"]) then
+                self:q("err", true)
+                if self:f() then
+                    self["_bt"].MouseButton1Click:Connect(function() self:g() end)
+                else
+                    self["_stopped"] = true
+                    break
+                end
+            end
+            task.wait(1)
+        end
+    end)
 end
 
-function Z.s(J,K)
-   if K==nil then
-      J["\112r"]=true
-   elseif type(K)=="string"then
-      J["\112r"]=(K or""):lower()=="true"
-   else
-      J["\112r"]=K and true or false
-   end
-   if J.f(J)then
-      J["\98t"].MouseButton1Click:Connect(function()J.g(J)end)
-      J.q(J,"ok")
-      J.m(J)
-   else
-      J["\115s"]=true
-   end
+function Z.s(self, printEnable)
+    if printEnable == nil then
+        self["_print"] = true
+    elseif type(printEnable) == "string" then
+        self["_print"] = (printEnable or ""):lower() == "true"
+    else
+        self["_print"] = printEnable and true or false
+    end
+    if self:f() then
+        self["_bt"].MouseButton1Click:Connect(function() self:g() end)
+        self:q("ok")
+        self:m()
+    else
+        self["_stopped"] = true
+    end
 end
 
-return function()return Z.n()end
+return function()
+    local obj = Z.n()
+    function obj:start(printEnable)
+        self:s(printEnable)
+    end
+    return obj
+end
