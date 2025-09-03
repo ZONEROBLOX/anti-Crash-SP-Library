@@ -19,6 +19,6 @@ A simple helper to prevent crashes and fix some common issues in **Nader/SP Libr
 
 ## ⚠️ Warning  
 This is **only a helper source** to solve some issues with the Nader/SP Library.  
-It is **not a replacement** or standalone library.  
+It is **not a replacement** or standalone library its just Addition...
 
 ---
