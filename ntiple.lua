@@ -1,9 +1,14 @@
-if _G.AntiCrashRunning then
+local CoreGui = game:GetService("CoreGui")
+
+-- تحقق من وجود ScreenGui باسم crssss
+if CoreGui:FindFirstChild("crssss") then
     return
 end
-_G.AntiCrashRunning = true
 
-local CoreGui = game:GetService("CoreGui")
+-- إنشاء ScreenGui جديد باسم crssss
+local crssss = Instance.new("ScreenGui")
+crssss.Name = "crssss"
+crssss.Parent = CoreGui
 
 local AntiCrash = {}
 AntiCrash.__index = AntiCrash
