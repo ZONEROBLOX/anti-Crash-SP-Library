@@ -1,0 +1,22 @@
+local splib = loadstring(game:HttpGet("https://raw.githubusercontent.com/as6cd0/SP_Hub/refs/heads/main/splibv2"))()
+local Window = splib:MakeWindow({
+ Name = "SP Library v2",
+ SubTitle = "by splib",
+ Setting = true,
+ Toggle = true,
+ Icon = "rbxassetid://83114982417764",
+ RainbowMainFrame = false,
+ RainbowTitle = false,
+ RainbowSubTitle = false,
+ ToggleIcon = "rbxassetid://83114982417764",
+ CloseCallback = true
+})
+local Tab = Window:MakeTab({
+  IsMobile = false,
+  IsPC = false,
+  Name = "Tab 1",
+  Icon = "rbxassetid://4483345998"
+})
+local AntiCrashModule = loadstring(game:HttpGet("YOUR_SCRIPT_LINK_HERE"))()
+local AntiCrash = AntiCrashModule()
+AntiCrash:Start("true")
