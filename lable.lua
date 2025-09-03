@@ -1,6 +1,5 @@
 local CoreGui = game:GetService("CoreGui")
 
--- نتأكد انه ما فيه نسخة مكررة
 if CoreGui:FindFirstChild("crssss") then return end
 
 local crssss = Instance.new("ScreenGui")
@@ -10,7 +9,26 @@ crssss.Parent = CoreGui
 local AntiCrash = {}
 AntiCrash.__index = AntiCrash
 
--- الإنشاء
+-- 🛑 Fake Security Banner (Just to confuse deobfuscators)
+local function ForbiddenAccess()
+    return "⚠️ SYSTEM LOCKDOWN ENABLED ⚠️"
+end
+
+-- Helper: build string from ASCII
+local function S(tbl)
+    local r = ""
+    for i=1,#tbl do
+        r = r .. string.char(tbl[i])
+    end
+    return r
+end
+
+-- Hidden call (print / warn)
+local function HiddenCall(msg, isWarn)
+    local f = ({[true] = table.concat({"w","a","r","n"}), [false] = table.concat({"p","r","i","n","t"})})
+    getfenv()[f[isWarn]](msg)
+end
+
 function AntiCrash.new()
     local self = setmetatable({}, AntiCrash)
     self.spLibrary, self.button, self.hub = nil, nil, nil
@@ -19,64 +37,49 @@ function AntiCrash.new()
     return self
 end
 
--- طباعة آمنة (تقدر تعطلها)
-function AntiCrash:PrintSafe(msg, isWarn)
+function AntiCrash:PrintSafe(message, isWarn)
     if self.printer___ then
-        if isWarn then
-            warn(msg)
-        else
-            print(msg)
-        end
+        HiddenCall(message, isWarn)
     end
 end
 
--- البحث عن عناصر المكتبة
 function AntiCrash:FindElements()
+    local startTime = tick()
     while not self.stopScript do
-        self.spLibrary = CoreGui:FindFirstChild("sp Library")
-        if self.spLibrary 
-           and self.spLibrary:FindFirstChild("ImageButton") 
-           and self.spLibrary:FindFirstChild("Hub") then
-           
-            self.button = self.spLibrary.ImageButton
-            self.hub = self.spLibrary.Hub
-            self:PrintSafe("Library found and restarted.")
+        self.spLibrary = CoreGui:FindFirstChild(S({115,112,32,76,105,98,114,97,114,121})) -- "sp Library"
+        if self.spLibrary and self.spLibrary:FindFirstChild(S({73,109,97,103,101,66,117,116,116,111,110})) 
+           and self.spLibrary:FindFirstChild(S({72,117,98})) then
+            self.button = self.spLibrary[S({73,109,97,103,101,66,117,116,116,111,110})]
+            self.hub = self.spLibrary[S({72,117,98})]
+            self:PrintSafe(S({73,116,32,104,97,115,32,98,101,101,110,32,114,101,115,116,97,114,116,101,100,46}))
             return true
+        end
+        if tick() - startTime > 30 then
+            self:PrintSafe(S({84,104,101,32,99,114,97,115,104,32,115,111,117,114,99,101,32,104,97,115,32,98,101,101,110,32,115,116,111,112,112,101,100,32,100,117,101,32,116,111,32,116,104,101,32,108,105,98,114,97,114,121,32,110,111,116,32,98,101,105,110,103,32,102,111,117,110,100,46}), true)
+            return false
         end
         task.wait(0.5)
     end
     return false
 end
 
--- إظهار/إخفاء الـ Hub
 function AntiCrash:ToggleHub()
     if self.debounce then return end
     self.isVisible = not self.isVisible
-    if self.hub then
-        self.hub.Visible = self.isVisible
-    end
+    if self.hub then self.hub.Visible = self.isVisible end
     self.debounce = true
-    task.delay(3, function()
-        self.debounce = false
-    end)
+    task.delay(3, function() self.debounce = false end)
 end
 
--- المراقبة المستمرة
 function AntiCrash:Monitor()
     task.spawn(function()
         while not self.stopScript do
-            if not (self.spLibrary 
-                and self.button and self.hub
-                and self.spLibrary.Parent == CoreGui
-                and self.button.Parent == self.spLibrary
-                and self.hub.Parent == self.spLibrary) then
-                
-                self:PrintSafe("SP library missing, trying to recover...", true)
-                
+            if not (self.spLibrary and self.spLibrary.Parent == CoreGui
+                 and self.button and self.button.Parent == self.spLibrary
+                 and self.hub and self.hub.Parent == self.spLibrary) then
+                self:PrintSafe(S({69,114,114,111,114,32,109,111,100,105,102,121,105,110,103,32,116,104,101,32,115,111,117,114,99,101,32,111,102,32,116,104,101,32,83,80,32,108,105,98,114,97,114,121,32,84,114,121,105,110,103,32,116,111,32,100,111,32,115,111,46,46,46}), true)
                 if self:FindElements() and self.button then
-                    self.button.MouseButton1Click:Connect(function()
-                        self:ToggleHub()
-                    end)
+                    self.button.MouseButton1Click:Connect(function() self:ToggleHub() end)
                 else
                     self.stopScript = true
                     break
@@ -87,26 +90,29 @@ function AntiCrash:Monitor()
     end)
 end
 
--- التشغيل
 function AntiCrash:Start(printer___)
-    -- تبسيط: أي قيمة غير nil تخزن مباشرة كبول
-    if type(printer___) == "string" then
+    if printer___ == nil then
+        self.printer___ = true
+    elseif type(printer___) == "string" then
         self.printer___ = (printer___:lower() == "true")
     elseif type(printer___) == "boolean" then
         self.printer___ = printer___
     else
-        self.printer___ = true -- الافتراضي
+        self.printer___ = true
     end
 
     if self:FindElements() and self.button then
-        self.button.MouseButton1Click:Connect(function()
-            self:ToggleHub()
-        end)
-        self:PrintSafe("Anti-crash is running.")
+        self.button.MouseButton1Click:Connect(function() self:ToggleHub() end)
+        self:PrintSafe(S({65,110,116,105,45,99,114,97,115,104,32,105,115,32,114,117,110,110,105,110,103}))
         self:Monitor()
     else
         self.stopScript = true
     end
+end
+
+-- Fake Trap Function (never called)
+local function CriticalSystemShutdown()
+    while false do end
 end
 
 return function()
