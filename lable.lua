@@ -1,42 +1,52 @@
-local X = game:GetService("CoreGui")
-if X:FindFirstChild("crssss") then return end
-local Y = Instance.new("ScreenGui")
-Y.Name = "crssss"
-Y.Parent = X
+local CoreGui = game:GetService("CoreGui")
 
-local Z = {}
-Z.__index = Z
-
-function Z.n()
-    local A = setmetatable({}, Z)
-    A["_SL"] = nil
-    A["_bt"] = nil
-    A["_hb"] = nil
-    A["_visible"] = true
-    A["_debounce"] = false
-    A["_stopped"] = false
-    A["_print"] = true
-    return A
+-- تحقق من وجود ScreenGui باسم crssss
+if CoreGui:FindFirstChild("crssss") then
+    return
 end
 
-function Z.q(self, msg, useWarn)
-    if self["_print"] then
-        if useWarn then warn(msg) else print(msg) end
+-- إنشاء ScreenGui جديد باسم crssss
+local crssss = Instance.new("ScreenGui")
+crssss.Name = "crssss"
+crssss.Parent = CoreGui
+
+local AntiCrash = {}
+AntiCrash.__index = AntiCrash
+
+function AntiCrash.new()
+    local self = setmetatable({}, AntiCrash)
+    self.spLibrary = nil
+    self.button = nil
+    self.hub = nil
+    self.isVisible = true
+    self.debounce = false
+    self.stopScript = false
+    self.printer___ = true
+    return self
+end
+
+function AntiCrash:PrintSafe(message, isWarn)
+    if self.printer___ then
+        if isWarn then
+            warn(message)
+        else
+            print(message)
+        end
     end
 end
 
-function Z.f(self)
+function AntiCrash:FindElements()
     local startTime = tick()
-    while (not self["_stopped"]) do
-        self["_SL"] = X:FindFirstChild("sp Library")
-        if self["_SL"] and self["_SL"]:FindFirstChild("ImageButton") and self["_SL"]:FindFirstChild("Hub") then
-            self["_bt"] = self["_SL"].ImageButton
-            self["_hb"] = self["_SL"].Hub
-            self:q("Library found")
+    while not self.stopScript do
+        self.spLibrary = CoreGui:FindFirstChild("sp Library")
+        if self.spLibrary and self.spLibrary:FindFirstChild("ImageButton") and self.spLibrary:FindFirstChild("Hub") then
+            self.button = self.spLibrary.ImageButton
+            self.hub = self.spLibrary.Hub
+            self:PrintSafe("It has been restarted.")
             return true
         end
         if tick() - startTime > 30 then
-            self:q("no lib", true)
+            self:PrintSafe("The crash source has been stopped due to the library not being found.", true)
             return false
         end
         task.wait(0.5)
@@ -44,27 +54,29 @@ function Z.f(self)
     return false
 end
 
-function Z.g(self)
-    if self["_debounce"] then return end
-    self["_visible"] = not self["_visible"]
-    if self["_hb"] then
-        self["_hb"].Visible = self["_visible"]
+function AntiCrash:ToggleHub()
+    if self.debounce then return end
+    self.isVisible = not self.isVisible
+    if self.hub then
+        self.hub.Visible = self.isVisible
     end
-    self["_debounce"] = true
-    task.delay(3, function() self["_debounce"] = false end)
+    self.debounce = true
+    task.delay(3, function()
+        self.debounce = false
+    end)
 end
 
-function Z.m(self)
+function AntiCrash:Monitor()
     task.spawn(function()
-        while not self["_stopped"] do
-            if not (self["_SL"] and self["_SL"].Parent == X and
-                    self["_bt"] and self["_bt"].Parent == self["_SL"] and
-                    self["_hb"] and self["_hb"].Parent == self["_SL"]) then
-                self:q("err", true)
-                if self:f() then
-                    self["_bt"].MouseButton1Click:Connect(function() self:g() end)
+        while not self.stopScript do
+            if not (self.spLibrary and self.spLibrary.Parent == CoreGui and
+                    self.button and self.button.Parent == self.spLibrary and
+                    self.hub and self.hub.Parent == self.spLibrary) then
+                self:PrintSafe("Error modifying the source of the SP library Trying to do so...", true)
+                if self:FindElements() then
+                    self.button.MouseButton1Click:Connect(function() self:ToggleHub() end)
                 else
-                    self["_stopped"] = true
+                    self.stopScript = true
                     break
                 end
             end
@@ -73,27 +85,24 @@ function Z.m(self)
     end)
 end
 
-function Z.s(self, printEnable)
-    if printEnable == nil then
-        self["_print"] = true
-    elseif type(printEnable) == "string" then
-        self["_print"] = (printEnable or ""):lower() == "true"
+function AntiCrash:Start(printer___)
+    if printer___ == nil then
+        self.printer___ = true
+    elseif type(printer___) == "string" then
+        self.printer_ = (printer_ or ""):lower() == "true"
     else
-        self["_print"] = printEnable and true or false
+        self.printer_ = printer_ and true or false
     end
-    if self:f() then
-        self["_bt"].MouseButton1Click:Connect(function() self:g() end)
-        self:q("ok")
-        self:m()
+
+    if self:FindElements() then
+        self.button.MouseButton1Click:Connect(function() self:ToggleHub() end)
+        self:PrintSafe("Anti-crash is running")
+        self:Monitor()
     else
-        self["_stopped"] = true
+        self.stopScript = true
     end
 end
 
 return function()
-    local obj = Z.n()
-    function obj:start(printEnable)
-        self:s(printEnable)
-    end
-    return obj
+    return AntiCrash.new()
 end
