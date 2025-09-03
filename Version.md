@@ -1,2 +1,2 @@
 # Version : [1.8v]
-# Version : [coming soom...]
+# Version : [coming soon...]
