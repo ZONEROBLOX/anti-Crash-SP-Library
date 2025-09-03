@@ -17,6 +17,6 @@ local Tab = Window:MakeTab({
   Name = "Tab 1",
   Icon = "rbxassetid://4483345998"
 })
-local AntiCrashModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/ZONEROBLOX/anti-Crash-SP-Library/refs/heads/main/addton.lua.txt"))()
+local AntiCrashModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/ZONEROBLOX/anti-Crash-SP-Library/refs/heads/main/data_lable.lua"))()
 local AntiCrash = AntiCrashModule()
 AntiCrash:Start("true")
