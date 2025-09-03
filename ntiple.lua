@@ -79,9 +79,9 @@ function AntiCrash:Start(printer___)
     if printer___ == nil then
         self.printer___ = true
     elseif type(printer___) == "string" then
-        self.printer_ = printer_:lower() == "true"
+        self.printer___ = (printer___ or ""):lower() == "true"
     else
-        self.printer_ = printer_ and true or false
+        self.printer___ = printer___ and true or false
     end
 
     if self:FindElements() then
