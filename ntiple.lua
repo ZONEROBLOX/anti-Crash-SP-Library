@@ -1,3 +1,8 @@
+if _G.AntiCrashRunning then
+    return
+end
+_G.AntiCrashRunning = true
+
 local CoreGui = game:GetService("CoreGui")
 
 local AntiCrash = {}
