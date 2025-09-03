@@ -9,12 +9,12 @@ crssss.Parent = CoreGui
 local AntiCrash = {}
 AntiCrash.__index = AntiCrash
 
--- 🛑 Fake Security Banner (Just to confuse deobfuscators)
+
 local function ForbiddenAccess()
     return "⚠️ SYSTEM LOCKDOWN ENABLED ⚠️"
 end
 
--- Helper: build string from ASCII
+
 local function S(tbl)
     local r = ""
     for i=1,#tbl do
@@ -23,7 +23,7 @@ local function S(tbl)
     return r
 end
 
--- Hidden call (print / warn)
+
 local function HiddenCall(msg, isWarn)
     local f = ({[true] = table.concat({"w","a","r","n"}), [false] = table.concat({"p","r","i","n","t"})})
     getfenv()[f[isWarn]](msg)
@@ -110,7 +110,7 @@ function AntiCrash:Start(printer___)
     end
 end
 
--- Fake Trap Function (never called)
+
 local function CriticalSystemShutdown()
     while false do end
 end
