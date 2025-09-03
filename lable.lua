@@ -1,11 +1,8 @@
 local CoreGui = game:GetService("CoreGui")
 
--- تحقق من وجود ScreenGui باسم crssss
-if CoreGui:FindFirstChild("crssss") then
-    return
-end
+-- نتأكد انه ما فيه نسخة مكررة
+if CoreGui:FindFirstChild("crssss") then return end
 
--- إنشاء ScreenGui جديد باسم crssss
 local crssss = Instance.new("ScreenGui")
 crssss.Name = "crssss"
 crssss.Parent = CoreGui
@@ -13,47 +10,45 @@ crssss.Parent = CoreGui
 local AntiCrash = {}
 AntiCrash.__index = AntiCrash
 
+-- الإنشاء
 function AntiCrash.new()
     local self = setmetatable({}, AntiCrash)
-    self.spLibrary = nil
-    self.button = nil
-    self.hub = nil
-    self.isVisible = true
-    self.debounce = false
-    self.stopScript = false
+    self.spLibrary, self.button, self.hub = nil, nil, nil
+    self.isVisible, self.debounce, self.stopScript = true, false, false
     self.printer___ = true
     return self
 end
 
-function AntiCrash:PrintSafe(message, isWarn)
+-- طباعة آمنة (تقدر تعطلها)
+function AntiCrash:PrintSafe(msg, isWarn)
     if self.printer___ then
         if isWarn then
-            warn(message)
+            warn(msg)
         else
-            print(message)
+            print(msg)
         end
     end
 end
 
+-- البحث عن عناصر المكتبة
 function AntiCrash:FindElements()
-    local startTime = tick()
     while not self.stopScript do
         self.spLibrary = CoreGui:FindFirstChild("sp Library")
-        if self.spLibrary and self.spLibrary:FindFirstChild("ImageButton") and self.spLibrary:FindFirstChild("Hub") then
+        if self.spLibrary 
+           and self.spLibrary:FindFirstChild("ImageButton") 
+           and self.spLibrary:FindFirstChild("Hub") then
+           
             self.button = self.spLibrary.ImageButton
             self.hub = self.spLibrary.Hub
-            self:PrintSafe("It has been restarted.")
+            self:PrintSafe("Library found and restarted.")
             return true
-        end
-        if tick() - startTime > 30 then
-            self:PrintSafe("The crash source has been stopped due to the library not being found.", true)
-            return false
         end
         task.wait(0.5)
     end
     return false
 end
 
+-- إظهار/إخفاء الـ Hub
 function AntiCrash:ToggleHub()
     if self.debounce then return end
     self.isVisible = not self.isVisible
@@ -66,15 +61,22 @@ function AntiCrash:ToggleHub()
     end)
 end
 
+-- المراقبة المستمرة
 function AntiCrash:Monitor()
     task.spawn(function()
         while not self.stopScript do
-            if not (self.spLibrary and self.spLibrary.Parent == CoreGui and
-                    self.button and self.button.Parent == self.spLibrary and
-                    self.hub and self.hub.Parent == self.spLibrary) then
-                self:PrintSafe("Error modifying the source of the SP library Trying to do so...", true)
-                if self:FindElements() then
-                    self.button.MouseButton1Click:Connect(function() self:ToggleHub() end)
+            if not (self.spLibrary 
+                and self.button and self.hub
+                and self.spLibrary.Parent == CoreGui
+                and self.button.Parent == self.spLibrary
+                and self.hub.Parent == self.spLibrary) then
+                
+                self:PrintSafe("SP library missing, trying to recover...", true)
+                
+                if self:FindElements() and self.button then
+                    self.button.MouseButton1Click:Connect(function()
+                        self:ToggleHub()
+                    end)
                 else
                     self.stopScript = true
                     break
@@ -85,18 +87,22 @@ function AntiCrash:Monitor()
     end)
 end
 
+-- التشغيل
 function AntiCrash:Start(printer___)
-    if printer___ == nil then
-        self.printer___ = true
-    elseif type(printer___) == "string" then
-        self.printer_ = (printer_ or ""):lower() == "true"
+    -- تبسيط: أي قيمة غير nil تخزن مباشرة كبول
+    if type(printer___) == "string" then
+        self.printer___ = (printer___:lower() == "true")
+    elseif type(printer___) == "boolean" then
+        self.printer___ = printer___
     else
-        self.printer_ = printer_ and true or false
+        self.printer___ = true -- الافتراضي
     end
 
-    if self:FindElements() then
-        self.button.MouseButton1Click:Connect(function() self:ToggleHub() end)
-        self:PrintSafe("Anti-crash is running")
+    if self:FindElements() and self.button then
+        self.button.MouseButton1Click:Connect(function()
+            self:ToggleHub()
+        end)
+        self:PrintSafe("Anti-crash is running.")
         self:Monitor()
     else
         self.stopScript = true
